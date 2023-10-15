@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 public class Cliente
 {
+    [Key]
     public int ClienteID { get; set; } // Identifiacion del Cliente
     [Required]
     public required string NombreCompleto { get; set; } //Nombre Completo (cambiar)

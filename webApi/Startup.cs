@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,11 +61,23 @@ namespace webApi
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
-                
+                // Ruta para usar el controlador de Cliente
                 endpoints.MapControllerRoute(
                     name: "cliente",
                     pattern: "clientes/{action}/{id?}",
                     defaults: new { controller = "Cliente"});
+
+                // Ruta para usar el controlador de Reservacion
+                endpoints.MapControllerRoute(
+                    name: "reservacion",
+                    pattern: "reservaciones/{action}/{id?}",
+                    defaults: new { controller = "Reservacion" });
+
+                // Ruta para usar el controlador de Maleta
+                endpoints.MapControllerRoute(
+                    name: "maleta",
+                    pattern: "maletas/{action}/{id?}",
+                    defaults: new { controller = "Maleta" });
             });
 
 

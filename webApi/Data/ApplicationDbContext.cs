@@ -17,6 +17,10 @@ public class ApplicationDbContext : DbContext
 
     public IQueryable<Cliente> GetClientes() => Clientes;
 
+    public IQueryable<Reservacion> GetReservaciones() => Reservaciones;
+
+    public IQueryable<Maleta> GetMaletas() => Maletas;
+
 
     // Clase ClientesDbSet representa el conjunto de clientes
     internal class ClientesDbSet : DbSet<Cliente>

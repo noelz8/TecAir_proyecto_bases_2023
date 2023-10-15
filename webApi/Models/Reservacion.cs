@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class Reservacion
 {
+    [Key]
     public int ReservacionID { get; set; } //ID de Reservacion
     public int ClienteID { get; set; } // Id del Cliente que reservó
     public DateTime Fecha { get; set; } // Se obtiene la fecha de Reservacion
@@ -15,6 +16,9 @@ public class Reservacion
     public required IList<Maleta> Maletas { get; set; }// Cantidad de Maletas para calcular el precio
     public decimal Precio { get; private set; } //Precio unitario
     public decimal PrecioDerivado { get; set; } // Precio Total de la Reservacion
+
+    [ForeignKey("ClienteID")] 
+    public required Cliente Cliente { get; set; } 
     public static decimal CalcularCargoEquipaje(int cantidadMaletas)
     {
         // El pasajero tiene derecho a una única maleta sin costo
