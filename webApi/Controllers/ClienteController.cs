@@ -50,7 +50,7 @@ namespace webApi.Controllers
             await _context.Clientes.AddAsync(cliente);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetCliente), new { id = cliente.ClienteID }, cliente);
+            return CreatedAtAction(nameof(GetCliente), new { id = cliente.ClienteID}, cliente);
         }
 
         // Actualizar un cliente existente
