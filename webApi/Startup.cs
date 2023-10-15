@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 
 namespace webApi 
@@ -21,9 +22,16 @@ namespace webApi
         {
             services.AddControllers();
             services.AddControllersWithViews();
+            services.AddEndpointsApiExplorer();
+
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TecAir API", Version = "v1" });
             });
 
         }
@@ -40,15 +48,26 @@ namespace webApi
                 app.UseHsts();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TecAir API REST");
+        
+            });
+
             // Configura la canalización de solicitud HTTP aquí
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
+                
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    name: "cliente",
+                    pattern: "clientes/{action}/{id?}",
+                    defaults: new { controller = "Cliente"});
             });
+
+
         }
     }
 }
