@@ -12,6 +12,7 @@ void main() => runApp(MaterialApp(
       initialRoute: '/',
       routes: {
         '/': (context) => LoginScreen(), // Ruta de inicio
+        //'/': (context) => PromoScreen(), // Ruta de inicio
         '/menu': (context) => MenuScreen(),
         '/promos': (context) => PromoScreen(),
         '/buscar': (context) => buscarScreen(),
