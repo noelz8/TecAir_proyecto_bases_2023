@@ -25,6 +25,8 @@ namespace webApi
             services.AddControllersWithViews();
             services.AddEndpointsApiExplorer();
 
+            
+
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
