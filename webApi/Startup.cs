@@ -61,26 +61,9 @@ namespace webApi
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
-                // Ruta para usar el controlador de Cliente
-                endpoints.MapControllerRoute(
-                    name: "cliente",
-                    pattern: "clientes/{action}/{id?}",
-                    defaults: new { controller = "Cliente"});
-
-                // Ruta para usar el controlador de Reservacion
-                endpoints.MapControllerRoute(
-                    name: "reservacion",
-                    pattern: "reservaciones/{action}/{id?}",
-                    defaults: new { controller = "Reservacion" });
-
-                // Ruta para usar el controlador de Maleta
-                endpoints.MapControllerRoute(
-                    name: "maleta",
-                    pattern: "maletas/{action}/{id?}",
-                    defaults: new { controller = "Maleta" });
+                //Ruta de los controladores
+                endpoints.MapControllers();
             });
-
-
         }
     }
 }

@@ -11,22 +11,22 @@ using Microsoft.EntityFrameworkCore;
 namespace webApi.Controllers
 {
 
-    [Route("clientes")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ClienteController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext context;
 
         public ClienteController(ApplicationDbContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         // Obtener todos los clientes
         [HttpGet]
         public async Task<IActionResult> GetClientes()
         {
-            var clientes = await _context.Clientes.ToListAsync();
+            var clientes = await context.Clientes.ToListAsync();
             return Ok(clientes);
         }
 
@@ -34,7 +34,7 @@ namespace webApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCliente(int id)
         {
-            var cliente = await _context.Clientes.FindAsync(id);
+            var cliente = await context.Clientes.FindAsync(id);
             if (cliente == null)
             {
                 return NotFound();
@@ -47,8 +47,8 @@ namespace webApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCliente(Cliente cliente)
         {
-            await _context.Clientes.AddAsync(cliente);
-            await _context.SaveChangesAsync();
+            await context.Clientes.AddAsync(cliente);
+            await context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetCliente), new { id = cliente.ClienteID}, cliente);
         }
@@ -62,8 +62,8 @@ namespace webApi.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(cliente).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            context.Entry(cliente).State = EntityState.Modified;
+            await context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -72,14 +72,14 @@ namespace webApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCliente(int id)
         {
-            var cliente = await _context.Clientes.FindAsync(id);
+            var cliente = await context.Clientes.FindAsync(id);
             if (cliente == null)
             {
                 return NotFound();
             }
 
-            _context.Clientes.Remove(cliente);
-            await _context.SaveChangesAsync();
+            context.Clientes.Remove(cliente);
+            await context.SaveChangesAsync();
 
             return NoContent();
         }
