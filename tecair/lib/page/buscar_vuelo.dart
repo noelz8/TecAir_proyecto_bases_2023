@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'list_vuelos.dart'; // Importa la nueva pantalla de lista de vuelos
-import 'reserva.dart'; // Importa la pantalla de reserva
 
 class buscarScreen extends StatefulWidget {
   @override

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tecair/page/confirmar_pago.dart';
-import 'package:tecair/page/list_vuelos.dart';
 
 class ReservaScreen extends StatelessWidget {
   final String origen;
