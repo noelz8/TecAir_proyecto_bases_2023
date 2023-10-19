@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using webApi;
 
+
+namespace webApi;
 public class Program
 {
     public static void Main(string[] args)

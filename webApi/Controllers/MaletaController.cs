@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace webApi.Controllers
 {
-    [Route("maletas")]
+    [Route("api/[controller]")]
     [ApiController]
     public class MaletaController : Controller
         {

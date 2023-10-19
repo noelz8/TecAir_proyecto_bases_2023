@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace webApi.Controllers
 {
 
-    [Route("reservaciones")] // ruta del controlador para ser usado en EndPoint
+    [Route("api/[controller]")]
     [ApiController]
     public class ReservaController : Controller
     {
@@ -21,39 +21,39 @@ namespace webApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reservacion>>> GetReservaciones()
         {
-            var reservas = await _context.Reservaciones.ToListAsync();
+            var reservaciones = await _context.Reservaciones.ToListAsync();
 
-            return Ok(reservas);
+            return Ok(reservaciones);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Reservacion>> GetAsync(int id)
         {
-            var reserva = await _context.Reservaciones.FindAsync(id);
+            var reservacion = await _context.Reservaciones.FindAsync(id);
 
-            if (reserva == null)
+            if (reservacion == null)
             {
                 return NotFound();
             }
 
-            return reserva;
+            return reservacion;
         }
 
         [HttpPost]
-        public async Task<ActionResult<Reservacion>> Post([FromBody] Reservacion reserva)
+        public async Task<ActionResult<Reservacion>> Post([FromBody] Reservacion reservacion)
         {
-            reserva.CalcularPrecioDerivado();
+            reservacion.CalcularPrecioDerivado();
 
-            await _context.AddAsync(reserva);
+            await _context.AddAsync(reservacion);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetReservaciones), new { id = reserva.ReservacionID }, reserva);
+            return CreatedAtAction(nameof(GetReservaciones), new { id = reservacion.ReservacionID }, reservacion);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Reservacion>> Put(int id, [FromBody] Reservacion reserva)
+        public async Task<ActionResult<Reservacion>> Put(int id, [FromBody] Reservacion reservacion)
         {
-            reserva.CalcularPrecioDerivado();
+            reservacion.CalcularPrecioDerivado();
 
             var existingReserva = await _context.Reservaciones.FindAsync(id);
 
@@ -62,42 +62,43 @@ namespace webApi.Controllers
                 return NotFound();
             }
 
-            _context.Update(reserva);
+            _context.Update(reservacion);
             await _context.SaveChangesAsync();
 
-            return Ok(reserva);
+            return Ok(reservacion);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var reserva = await _context.Reservaciones.FindAsync(id);
+            var reservacion = await _context.Reservaciones.FindAsync(id);
 
-            if (reserva == null)
+            if (reservacion == null)
             {
                 return NotFound();
             }
 
-            _context.Remove(reserva);
+            _context.Remove(reservacion);
             await _context.SaveChangesAsync();
 
             return Ok();
         }
 
-        [HttpGet("api/reservas/cliente/{idCliente}")]
+        [HttpGet("reservaciones/clientes/{idCliente}")]
         public async Task<ActionResult<IEnumerable<Reservacion>>> GetByClienteId(int idCliente)
         {
-            var reservas = await _context.Reservaciones.Where(r => r.ClienteID == idCliente).ToListAsync();
+            var reservaciones = await _context.Reservaciones.Where(r => r.ClienteID == idCliente).ToListAsync();
 
-            return Ok(reservas);
+            return Ok(reservaciones);
         }
 
-        [HttpGet("api/reservas/fecha/{fecha}")]
+        
+        [HttpGet("reservaciones/fecha/{fecha}")]
         public async Task<ActionResult<IEnumerable<Reservacion>>> GetByFecha(DateTime fecha)
         {
-            var reservas = await _context.Reservaciones.Where(r => r.Fecha == fecha).ToListAsync();
+            var reservaciones = await _context.Reservaciones.Where(r => r.Fecha == fecha).ToListAsync();
 
-            return Ok(reservas);
+            return Ok(reservaciones);
         }
     }
 }
