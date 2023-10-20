@@ -6,10 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./registro-vuelo.component.css']
 })
 export class RegistroVueloComponent {
-  esEstudiante: boolean = false;
+  hayEscala: string = 'no'; // Valor predeterminado
 
-  toggleEstudiante(event: any) {
-    this.esEstudiante = event.target.value === 'si';
+  constructor() { }
+
+  // Función que maneja el cambio en la presencia de escalas
+  onChangeEscala(event: any) {
+    this.hayEscala = event.target.value;
   }
-
 }

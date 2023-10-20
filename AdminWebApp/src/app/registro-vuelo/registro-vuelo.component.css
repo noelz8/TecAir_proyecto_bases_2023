@@ -8,4 +8,8 @@
   .card {
     background-color: rgba(255, 255, 255, 0.5); /* Ajusta el último valor para la opacidad deseada */
   }
-  
+  .card {
+    width: 100%;
+    max-width: 1200px; /* Ajusta el valor según tus necesidades */
+    margin: 0 auto;
+  }
