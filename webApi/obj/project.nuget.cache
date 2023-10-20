@@ -1,10 +1,6 @@
 {
   "version": 2,
-<<<<<<< Updated upstream
   "dgSpecHash": "TyMANLnAmeSuyBGWt7Mg4XtWM1GdK2VdinPsOd/3Rad+yctfBTDXb7FmA5DTym6RzjOGRQnhvkhzgzgRsvoLlA==",
-=======
-  "dgSpecHash": "uiSgyAfK9IVIw59bI3+9xDYa64EKw+VgnksdKfEFQeX/gIooy1qfSfbhv83xrLFQ8frvbcd/xHa5x9TeqCdXog==",
->>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "C:\\Users\\kevin\\OneDrive\\Documentos\\ProyectoBasesDatos\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj",
   "expectedPackageFiles": [
@@ -240,5 +236,12 @@
     "C:\\Users\\kevin\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché C:\\Users\\kevin\\OneDrive\\Documentos\\ProyectoBasesDatos\\TecAir_proyecto_bases_2023\\webApi\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
