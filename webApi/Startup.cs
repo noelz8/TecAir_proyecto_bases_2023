@@ -1,14 +1,7 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-
-namespace webApi 
+namespace webApi
 {
     public class Startup
     {
@@ -27,10 +20,10 @@ namespace webApi
 
             
 
-             services.AddDbContext<ApplicationDbContext>(options =>
-             {
-                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
-             });
+            services.AddDbContext<Data.ApplicationDbContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+            });
 
             services.AddSwaggerGen(c =>
             {

@@ -23,5 +23,7 @@ public partial class Avion
 
     public virtual Origen CodigoaeropuertoorigenNavigation { get; set; }
 
+    public virtual ICollection<Escala> Escalas { get; set; } = new List<Escala>();
+
     public virtual ICollection<Viaje> Viajes { get; set; } = new List<Viaje>();
 }
