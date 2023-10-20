@@ -43,40 +43,6 @@ CREATE TABLE Promocion (
 	PRIMARY KEY(PromocionID)
 );
 
-CREATE TABLE Avion (
-    AvionID INT NOT NULL,
-    CodigoAeropuertoDestino CHAR(3),
-    CodigoAeropuertoOrigen CHAR(3),
-    Imagen VARCHAR(255),
-    Capacidad INT,
-    Aerolinea VARCHAR(255),
-    Modelo VARCHAR(255),
-	PRIMARY KEY(AvionID),
-    FOREIGN KEY (CodigoAeropuertoDestino) REFERENCES Destino(CodigoAeropuertoDestino),
-    FOREIGN KEY (CodigoAeropuertoOrigen) REFERENCES Origen(CodigoAeropuertoOrigen)
-);
-
-
-CREATE TABLE Viaje (
-    ViajeID INT NOT NULL,
-    Fecha DATE,
-    Horario TIME,
-    Precio DECIMAL(10, 2),
-	NumeroAsiento INT,
-    ReservacionID INT,
-    AvionID INT,
-	PRIMARY KEY(ViajeID),
-    FOREIGN KEY (ReservacionID) REFERENCES Reservacion(ReservacionID),
-    FOREIGN KEY (AvionID) REFERENCES Avion(AvionID)
-);
-
-CREATE TABLE PromocionesPorViaje (
-    ViajeID INT,
-    PromocionID INT,
-    PRIMARY KEY (ViajeID, PromocionID),
-    FOREIGN KEY (ViajeID) REFERENCES Viaje(ViajeID),
-    FOREIGN KEY (PromocionID) REFERENCES Promocion(PromocionID)
-);
 
 CREATE TABLE Destino (
     CodigoAeropuertoDestino CHAR(3) NOT NULL,
@@ -95,6 +61,50 @@ CREATE TABLE Origen (
     PuertaIngreso VARCHAR(10),
     HoraSalida TIME,
 	PRIMARY KEY(CodigoAeropuertoOrigen)
+);
+
+CREATE TABLE Avion (
+    AvionID INT NOT NULL,
+    CodigoAeropuertoDestino CHAR(3),
+    CodigoAeropuertoOrigen CHAR(3),
+    Imagen VARCHAR(255),
+    Capacidad INT,
+    Aerolinea VARCHAR(255),
+    Modelo VARCHAR(255),
+	PRIMARY KEY(AvionID),
+    FOREIGN KEY (CodigoAeropuertoDestino) REFERENCES Destino(CodigoAeropuertoDestino),
+    FOREIGN KEY (CodigoAeropuertoOrigen) REFERENCES Origen(CodigoAeropuertoOrigen)
+);
+
+CREATE TABLE Viaje (
+    ViajeID INT NOT NULL,
+    Fecha DATE,
+    Horario TIME,
+    Precio DECIMAL(10, 2),
+	NumeroAsiento INT,
+    ReservacionID INT,
+    AvionID INT,
+	PRIMARY KEY(ViajeID),
+    FOREIGN KEY (ReservacionID) REFERENCES Reservacion(ReservacionID),
+    FOREIGN KEY (AvionID) REFERENCES Avion(AvionID)
+);
+
+CREATE TABLE Maleta (
+    Numero INT NOT NULL,
+    ReservacionID INT NOT NULL,
+    Dueño VARCHAR(255) NOT NULL,
+    Peso DECIMAL(10, 2) NOT NULL,
+    Color VARCHAR(50) NOT NULL,
+	PRIMARY KEY(Numero),
+	FOREIGN KEY (ReservacionID) REFERENCES Reservacion(ReservacionID)
+);
+
+CREATE TABLE PromocionesPorViaje (
+    ViajeID INT,
+    PromocionID INT,
+    PRIMARY KEY (ViajeID, PromocionID),
+    FOREIGN KEY (ViajeID) REFERENCES Viaje(ViajeID),
+    FOREIGN KEY (PromocionID) REFERENCES Promocion(PromocionID)
 );
 
 
