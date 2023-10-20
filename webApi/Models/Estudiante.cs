@@ -9,7 +9,5 @@ public partial class Estudiante
 
     public int? Clienteid { get; set; }
 
-    public virtual Cliente Cliente { get; set; }
-
-    public virtual ICollection<Universidad> Universidads { get; set; } = new List<Universidad>();
+   
 }

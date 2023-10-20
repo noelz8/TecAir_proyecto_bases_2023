@@ -13,7 +13,6 @@ public partial class Origen
 
     public string Puertaingreso { get; set; }
 
-    public TimeOnly? Horasalida { get; set; }
+    public DateTime? Horasalida { get; set; }
 
-    public virtual ICollection<Avion> Avions { get; set; } = new List<Avion>();
 }

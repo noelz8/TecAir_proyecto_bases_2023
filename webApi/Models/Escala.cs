@@ -15,5 +15,5 @@ public partial class Escala
 
     public string Ciudad { get; set; }
 
-    public virtual Avion Avion { get; set; }
+
 }

@@ -19,9 +19,4 @@ public partial class Viaje
 
     public int? Avionid { get; set; }
 
-    public virtual Avion Avion { get; set; }
-
-    public virtual Reservacion Reservacion { get; set; }
-
-    public virtual ICollection<Promocion> Promocions { get; set; } = new List<Promocion>();
 }

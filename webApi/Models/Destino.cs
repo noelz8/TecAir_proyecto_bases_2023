@@ -13,7 +13,7 @@ public partial class Destino
 
     public string Puertaingreso { get; set; }
 
-    public TimeOnly? Horallegada { get; set; }
+    public DateTime? Horallegada { get; set; }
 
-    public virtual ICollection<Avion> Avions { get; set; } = new List<Avion>();
+
 }

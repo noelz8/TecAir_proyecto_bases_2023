@@ -9,5 +9,4 @@ public partial class Universidad
 
     public int? Carnet { get; set; }
 
-    public virtual Estudiante CarnetNavigation { get; set; }
 }

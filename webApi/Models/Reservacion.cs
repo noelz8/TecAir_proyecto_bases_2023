@@ -19,7 +19,4 @@ public partial class Reservacion
 
     public virtual Cliente Cliente { get; set; }
 
-    public virtual ICollection<Maletum> Maleta { get; set; } = new List<Maletum>();
-
-    public virtual ICollection<Viaje> Viajes { get; set; } = new List<Viaje>();
 }

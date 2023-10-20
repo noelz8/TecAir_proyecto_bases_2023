@@ -15,5 +15,5 @@ public partial class Maletum
 
     public string Color { get; set; }
 
-    public virtual Reservacion Reservacion { get; set; }
+
 }

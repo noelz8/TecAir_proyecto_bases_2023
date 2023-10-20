@@ -70,14 +70,6 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Modelo)
                 .HasMaxLength(255)
                 .HasColumnName("modelo");
-
-            entity.HasOne(d => d.CodigoaeropuertodestinoNavigation).WithMany(p => p.Avions)
-                .HasForeignKey(d => d.Codigoaeropuertodestino)
-                .HasConstraintName("avion_codigoaeropuertodestino_fkey");
-
-            entity.HasOne(d => d.CodigoaeropuertoorigenNavigation).WithMany(p => p.Avions)
-                .HasForeignKey(d => d.Codigoaeropuertoorigen)
-                .HasConstraintName("avion_codigoaeropuertoorigen_fkey");
         });
 
         modelBuilder.Entity<Cliente>(entity =>
@@ -157,10 +149,6 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(255)
                 .HasColumnName("vueloorigen");
 
-            entity.HasOne(d => d.Avion).WithMany(p => p.Escalas)
-                .HasForeignKey(d => d.Avionid)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("escala_avionid_fkey");
         });
 
         modelBuilder.Entity<Estudiante>(entity =>
@@ -174,9 +162,6 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("carnet");
             entity.Property(e => e.Clienteid).HasColumnName("clienteid");
 
-            entity.HasOne(d => d.Cliente).WithMany(p => p.Estudiantes)
-                .HasForeignKey(d => d.Clienteid)
-                .HasConstraintName("estudiante_clienteid_fkey");
         });
 
         modelBuilder.Entity<Maletum>(entity =>
@@ -200,11 +185,6 @@ public partial class ApplicationDbContext : DbContext
                 .HasPrecision(10, 2)
                 .HasColumnName("peso");
             entity.Property(e => e.Reservacionid).HasColumnName("reservacionid");
-
-            entity.HasOne(d => d.Reservacion).WithMany(p => p.Maleta)
-                .HasForeignKey(d => d.Reservacionid)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("maleta_reservacionid_fkey");
         });
 
         modelBuilder.Entity<Origen>(entity =>
@@ -265,9 +245,6 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Dia).HasColumnName("dia");
             entity.Property(e => e.Mes).HasColumnName("mes");
 
-            entity.HasOne(d => d.Cliente).WithMany(p => p.Reservacions)
-                .HasForeignKey(d => d.Clienteid)
-                .HasConstraintName("reservacion_clienteid_fkey");
         });
 
         modelBuilder.Entity<Universidad>(entity =>
@@ -281,9 +258,6 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("nombre");
             entity.Property(e => e.Carnet).HasColumnName("carnet");
 
-            entity.HasOne(d => d.CarnetNavigation).WithMany(p => p.Universidads)
-                .HasForeignKey(d => d.Carnet)
-                .HasConstraintName("universidad_carnet_fkey");
         });
 
         modelBuilder.Entity<Viaje>(entity =>
@@ -304,32 +278,6 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("precio");
             entity.Property(e => e.Reservacionid).HasColumnName("reservacionid");
 
-            entity.HasOne(d => d.Avion).WithMany(p => p.Viajes)
-                .HasForeignKey(d => d.Avionid)
-                .HasConstraintName("viaje_avionid_fkey");
-
-            entity.HasOne(d => d.Reservacion).WithMany(p => p.Viajes)
-                .HasForeignKey(d => d.Reservacionid)
-                .HasConstraintName("viaje_reservacionid_fkey");
-
-            entity.HasMany(d => d.Promocions).WithMany(p => p.Viajes)
-                .UsingEntity<Dictionary<string, object>>(
-                    "Promocionesporviaje",
-                    r => r.HasOne<Promocion>().WithMany()
-                        .HasForeignKey("Promocionid")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("promocionesporviaje_promocionid_fkey"),
-                    l => l.HasOne<Viaje>().WithMany()
-                        .HasForeignKey("Viajeid")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("promocionesporviaje_viajeid_fkey"),
-                    j =>
-                    {
-                        j.HasKey("Viajeid", "Promocionid").HasName("promocionesporviaje_pkey");
-                        j.ToTable("promocionesporviaje");
-                        j.IndexerProperty<int>("Viajeid").HasColumnName("viajeid");
-                        j.IndexerProperty<int>("Promocionid").HasColumnName("promocionid");
-                    });
         });
 
         OnModelCreatingPartial(modelBuilder);

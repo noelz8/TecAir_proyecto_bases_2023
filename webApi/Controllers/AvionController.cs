@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using webApi.Data;
 using webApi.Models;
 
@@ -71,6 +72,35 @@ namespace webApi
             }
 
             return NoContent();
+        }
+        [HttpPost("creaAvion")]
+        public async Task<ActionResult<Avion>> PostAviont([FromBody] Avion avion)
+        {
+            if (avion == null)
+            {
+                return BadRequest("El objeto Avion no puede ser nulo.");
+            }
+
+            // Realiza validaciones adicionales si es necesario
+
+            _context.Avions.Add(avion);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetAvion", new { id = avion.Avionid }, avion);
+            }
+            catch (DbUpdateException)
+            {
+                if (AvionExists(avion.Avionid))
+                {
+                    return Conflict("Ya existe un avión con el mismo ID.");
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         // POST: api/Avion

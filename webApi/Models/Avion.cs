@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Newtonsoft.Json;
 namespace webApi.Models;
-
+#nullable disable
 public partial class Avion
 {
     public int Avionid { get; set; }
@@ -19,11 +19,4 @@ public partial class Avion
 
     public string Modelo { get; set; }
 
-    public virtual Destino CodigoaeropuertodestinoNavigation { get; set; }
-
-    public virtual Origen CodigoaeropuertoorigenNavigation { get; set; }
-
-    public virtual ICollection<Escala> Escalas { get; set; } = new List<Escala>();
-
-    public virtual ICollection<Viaje> Viajes { get; set; } = new List<Viaje>();
 }
