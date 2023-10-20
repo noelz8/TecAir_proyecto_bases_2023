@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "TyMANLnAmeSuyBGWt7Mg4XtWM1GdK2VdinPsOd/3Rad+yctfBTDXb7FmA5DTym6RzjOGRQnhvkhzgzgRsvoLlA==",
+=======
+  "dgSpecHash": "uiSgyAfK9IVIw59bI3+9xDYa64EKw+VgnksdKfEFQeX/gIooy1qfSfbhv83xrLFQ8frvbcd/xHa5x9TeqCdXog==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "C:\\Users\\kevin\\OneDrive\\Documentos\\ProyectoBasesDatos\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj",
   "expectedPackageFiles": [
