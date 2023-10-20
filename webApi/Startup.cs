@@ -1,14 +1,7 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-
-namespace webApi 
+namespace webApi
 {
     public class Startup
     {
@@ -24,8 +17,8 @@ namespace webApi
             services.AddControllers();
             services.AddControllersWithViews();
             services.AddEndpointsApiExplorer();
-
-            services.AddDbContext<ApplicationDbContext>(options =>
+    
+            services.AddDbContext<Data.ApplicationDbContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
@@ -55,9 +48,10 @@ namespace webApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "TecAir API REST");
         
             });
+            
 
             // Configura la canalización de solicitud HTTP aquí
-
+            app.UseHttpsRedirection();
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
