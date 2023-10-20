@@ -1,0 +1,11 @@
+
+  .body-container {
+    background-image: url('https://wallpapercave.com/wp/wp12178166.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .card {
+    background-color: rgba(255, 255, 255, 0.5); /* Ajusta el último valor para la opacidad deseada */
+  }
+  
