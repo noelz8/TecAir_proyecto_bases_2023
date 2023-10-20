@@ -1,14 +1,19 @@
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
-public class Origen
+namespace webApi.Models;
+
+public partial class Origen
 {
-    [Key]
-    public int OrigenId { get; set; }
-    public required string Ciudad { get; set; }
-    public required string Pais { get; set; }
-    public required string CodigoAeropuerto { get; set; }
+    public string Codigoaeropuertoorigen { get; set; }
 
-    public virtual required ICollection<Vuelo> Vuelos { get; set; }
+    public string Ciudad { get; set; }
+
+    public string Pais { get; set; }
+
+    public string Puertaingreso { get; set; }
+
+    public TimeOnly? Horasalida { get; set; }
+
+    public virtual ICollection<Avion> Avions { get; set; } = new List<Avion>();
 }

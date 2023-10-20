@@ -1,27 +1,27 @@
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
+namespace webApi.Models;
 
-#nullable disable
-
-public class Avion
+public partial class Avion
 {
-    [Key]
-    public int AvionId { get; set; }//El ID del avión
+    public int Avionid { get; set; }
 
-    
-    public string Matricula { get; set; }// La matricula puede contener numeros y letras
-    public string Modelo { get; set; } // El modelo del avion
-    public string Fabricante { get; set; }// Fabricante del avión
-    public int Capacidad { get; set; } // Capacidad total del avión
-    public  string Imagen { get; set; } // string de donde se va meter la dirección de la imagen
-    public ICollection<Asiento> Asientos { get; set; } //Entidad Asientos(Atributo Multivaluado)
+    public string Codigoaeropuertodestino { get; set; }
 
-    public virtual ICollection<Vuelo> Vuelos { get; set; }// Tabla Intermedia N:M 
+    public string Codigoaeropuertoorigen { get; set; }
 
-    internal bool IsValid()
-    {
-        throw new NotImplementedException();
-    }
+    public string Imagen { get; set; }
+
+    public int? Capacidad { get; set; }
+
+    public string Aerolinea { get; set; }
+
+    public string Modelo { get; set; }
+
+    public virtual Destino CodigoaeropuertodestinoNavigation { get; set; }
+
+    public virtual Origen CodigoaeropuertoorigenNavigation { get; set; }
+
+    public virtual ICollection<Viaje> Viajes { get; set; } = new List<Viaje>();
 }

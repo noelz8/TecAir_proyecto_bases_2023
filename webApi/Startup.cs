@@ -27,10 +27,10 @@ namespace webApi
 
             
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
-            });
+             services.AddDbContext<ApplicationDbContext>(options =>
+             {
+                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+             });
 
             services.AddSwaggerGen(c =>
             {
