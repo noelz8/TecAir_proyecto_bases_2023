@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./registro-cliente.component.css']
 })
 export class RegistroClienteComponent {
+  esEstudiante: boolean = false;
 
+  toggleEstudiante(event: any) {
+    this.esEstudiante = event.target.value === 'si';
+  }
 }
