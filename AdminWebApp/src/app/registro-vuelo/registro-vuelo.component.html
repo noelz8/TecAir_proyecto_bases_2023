@@ -1,1 +1,109 @@
-<p>registro-vuelo works!</p>
+<div class="body-container">
+  <div class="container">
+    <div class="row justify-content-center align-items-center" style="height:100vh">
+      <div class="col-8">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center">Registrar Vuelo</h2>
+            <div class="row">
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Detalles de Origen</h5>
+                    <div class="form-group">
+                      <label for="codigo-aeropuerto-origen">Código de Aeropuerto</label>
+                      <input type="text" class="form-control" id="codigo-aeropuerto-origen" placeholder="Ingrese el código del aeropuerto">
+                    </div>
+                    <div class="form-group">
+                      <label for="ciudad-origen">Ciudad</label>
+                      <input type="text" class="form-control" id="ciudad-origen" placeholder="Ingrese la ciudad del aeropuerto">
+                    </div>
+                    <div class="form-group">
+                      <label for="pais-origen">País</label>
+                      <input type="text" class="form-control" id="pais-origen" placeholder="Ingrese el país del aeropuerto">
+                    </div>
+                    <div class="form-group">
+                      <label for="puerta-ingreso-origen">Puerta de Ingreso</label>
+                      <input type="text" class="form-control" id="puerta-ingreso-origen" placeholder="Ingrese la puerta de ingreso">
+                    </div>
+                    <div class="form-group">
+                      <label for="hora-llegada">Hora de Llegada</label>
+                      <input type="datetime-local" class="form-control" id="hora-llegada" placeholder="Ingrese la fecha y hora de llegada de salida">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Detalles de Destino</h5>
+                    <div class="form-group">
+                      <label for="codigo-aeropuerto-destino">Código de Aeropuerto</label>
+                      <input type="text" class="form-control" id="codigo-aeropuerto-destino" placeholder="Ingrese el código del aeropuerto">
+                    </div>
+                    <div class="form-group">
+                      <label for="ciudad-destino">Ciudad</label>
+                      <input type="text" class="form-control" id="ciudad-destino" placeholder="Ingrese la ciudad del aeropuerto">
+                    </div>
+                    <div class="form-group">
+                      <label for="pais-destino">País</label>
+                      <input type="text" class="form-control" id="pais-destino" placeholder="Ingrese el país del aeropuerto">
+                    </div>
+                    <div class="form-group">
+                      <label for="puerta-ingreso-destino">Puerta de Ingreso</label>
+                      <input type="text" class="form-control" id="puerta-ingreso-destino" placeholder="Ingrese la puerta de salida">
+                    </div>
+                    <div class="form-group">
+                      <label for="hora-llegada-destino">Hora de Llegada</label>
+                      <input type="datetime-local" class="form-control" id="hora-llegada-destino" placeholder="Ingrese la fecha y hora de llegada">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Detalles de Escala</h5>
+                    <div class="form-group">
+                      <label for="hay-escala">¿Hay Escala?</label>
+                      <select class="form-control" id="hay-escala" [(ngModel)]="hayEscala">
+                        <option value="si">Sí</option>
+                        <option value="no">No</option>
+                      </select>
+                    </div>
+                    <div *ngIf="hayEscala==='si'">
+                      <div class="form-group">
+                        <label for="codigo-aeropuerto-escala">Código de Aeropuerto</label>
+                        <input type="text" class="form-control" id="codigo-aeropuerto-escala" placeholder="Ingrese el código del aeropuerto">
+                      </div>
+                      <div class="form-group">
+                        <label for="pais-escala">País</label>
+                        <input type="text" class="form-control" id="pais-escala" placeholder="Ingrese el país">
+                      </div>
+                      <div class="form-group">
+                        <label for="ciudad-escala">Ciudad</label>
+                        <input type="text" class="form-control" id="ciudad-escala" placeholder="Ingrese la ciudad">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Detalles del Avión</h5>
+                    <div class="form-group">
+                      <label for="placa-avion">Placa del Avión</label>
+                      <input type="text" class="form-control" id="placa-avion" placeholder="Ingrese la placa del avión">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-3">Registrar Vuelo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

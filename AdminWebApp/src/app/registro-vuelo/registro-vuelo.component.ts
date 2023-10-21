@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./registro-vuelo.component.css']
 })
 export class RegistroVueloComponent {
+  hayEscala: string = 'no'; // Valor predeterminado
 
+  constructor() { }
+
+  // Función que maneja el cambio en la presencia de escalas
+  onChangeEscala(event: any) {
+    this.hayEscala = event.target.value;
+  }
 }
