@@ -1,1 +1,0 @@
-Crear en una clase publica los valores y el tipo de valor que va a ser ingresado por medio del controlador.

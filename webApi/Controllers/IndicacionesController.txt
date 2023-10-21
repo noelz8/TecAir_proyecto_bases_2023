@@ -1,1 +1,0 @@
-Crear un conjunto de metodos get y get id, put, post, delete para cada entidad
