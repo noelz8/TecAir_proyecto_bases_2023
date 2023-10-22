@@ -17,6 +17,8 @@ namespace webApi
             services.AddControllers();
             services.AddControllersWithViews();
             services.AddEndpointsApiExplorer();
+
+             services.AddCors();
     
             services.AddDbContext<Data.ApplicationDbContext>(options =>
             {
@@ -46,6 +48,13 @@ namespace webApi
                 app.UseHsts();
             }
 
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+            });
+            
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
