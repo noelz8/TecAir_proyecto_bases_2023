@@ -13,7 +13,7 @@ CREATE TABLE Cliente (
 
 -- Tabla de Estudiante 
 CREATE TABLE Estudiante (
-    Carnet VARCHAR(20) PRIMARY KEY,
+    Carnet VARCHAR(20),
     ClienteID INT,
     CantidaddeViajes INT NOT NULL,
     Millas INT GENERATED ALWAYS AS (CantidaddeViajes * 100) STORED,
@@ -41,6 +41,7 @@ CREATE TABLE Reservacion (
 	FOREIGN KEY (ClienteID) REFERENCES Cliente(ClienteID)
 );
 
+
 -- Tabla Maleta
 CREATE TABLE Maleta (
     Numero INT,
@@ -50,7 +51,7 @@ CREATE TABLE Maleta (
     Peso DECIMAL(5, 2) NOT NULL,
 	PRIMARY KEY(Numero),
 	FOREIGN KEY (ClienteID) REFERENCES Cliente(ClienteID),
-	FOREIGN KEY (ClienteID) REFERENCES Cliente(ClienteID)
+	FOREIGN KEY (ReservacionID) REFERENCES Reservacion(ReservacionID)
 );
 
 
@@ -111,23 +112,60 @@ CREATE TABLE Asiento (
 	FOREIGN KEY (AvionID) REFERENCES Avion(AvionID)
 );
 
+-- Tabla Aeropuerto
+CREATE TABLE Aeropuerto (
+    CodigoAeropuerto VARCHAR(10),
+    Ciudad VARCHAR(100),
+    Pais VARCHAR(100),
+	PRIMARY KEY(CodigoAeropuerto)
+);
+-- Tabla Origen
+CREATE TABLE Origen (
+    CodigoAeropuerto VARCHAR(10),
+    Ciudad VARCHAR(100),
+    PuertaIngreso VARCHAR(10),
+    Pais VARCHAR(100),
+    PRIMARY KEY (CodigoAeropuerto),
+    FOREIGN KEY (CodigoAeropuerto) REFERENCES Aeropuerto(CodigoAeropuerto)
+);
+
+-- Tabla Destino
+CREATE TABLE Destino (
+    CodigoAeropuerto VARCHAR(10),
+    Ciudad VARCHAR(100),
+    PuertaIngreso VARCHAR(10),
+    Pais VARCHAR(100),
+    PRIMARY KEY (CodigoAeropuerto),
+    FOREIGN KEY (CodigoAeropuerto) REFERENCES Aeropuerto(CodigoAeropuerto)
+);
 
 -- Tabla Vuelo
 CREATE TABLE Vuelo (
-    VueloID serial PRIMARY KEY,
+    VueloID INT,
     CodigoAeropuertoOrigen VARCHAR(10),
     CodigoAeropuertoDestino VARCHAR(10),
     Origen VARCHAR(100),
     Destino VARCHAR(100),
     ViajeID INT,
     AvionID INT,
-    FOREIGN KEY (CodigoAeropuertoOrigen) REFERENCES Aeropuerto(CodigoAeropuerto),
-    FOREIGN KEY (CodigoAeropuertoDestino) REFERENCES Aeropuerto(CodigoAeropuerto),
+	PRIMARY KEY(VueloID),
+    FOREIGN KEY (CodigoAeropuertoOrigen) REFERENCES Origen(CodigoAeropuerto),
+    FOREIGN KEY (CodigoAeropuertoDestino) REFERENCES Destino(CodigoAeropuerto),
     FOREIGN KEY (ViajeID) REFERENCES Viaje(ViajeID),
     FOREIGN KEY (AvionID) REFERENCES Avion(AvionID)
 );
 
+-- Tabla Escala
 
+CREATE TABLE Escala (
+    CodigoAeropuertoEscala VARCHAR(10),
+    VueloID INT,
+    VueloOrigen VARCHAR(100),
+    Ciudad VARCHAR(100),
+    Pais VARCHAR(100),
+	PRIMARY KEY(CodigoAeropuertoEscala),
+	FOREIGN KEY (VueloID) REFERENCES Vuelo(VueloID)
+);
 
 
 
