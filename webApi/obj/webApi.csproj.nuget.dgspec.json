@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kevin\\OneDrive\\Documentos\\ProyectoBasesDatos\\NuevoTECAir\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj": {}
+    "C:\\Users\\DELL\\Desktop\\ProyectoTecAir\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kevin\\OneDrive\\Documentos\\ProyectoBasesDatos\\NuevoTECAir\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj": {
+    "C:\\Users\\DELL\\Desktop\\ProyectoTecAir\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kevin\\OneDrive\\Documentos\\ProyectoBasesDatos\\NuevoTECAir\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj",
+        "projectUniqueName": "C:\\Users\\DELL\\Desktop\\ProyectoTecAir\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj",
         "projectName": "webApi",
-        "projectPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\ProyectoBasesDatos\\NuevoTECAir\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kevin\\OneDrive\\Documentos\\ProyectoBasesDatos\\NuevoTECAir\\TecAir_proyecto_bases_2023\\webApi\\obj\\",
+        "projectPath": "C:\\Users\\DELL\\Desktop\\ProyectoTecAir\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DELL\\Desktop\\ProyectoTecAir\\TecAir_proyecto_bases_2023\\webApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -92,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
