@@ -5,6 +5,7 @@ namespace webApi
 {
     public class Startup
     {
+        private readonly string _Cors = "_Cors";
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -18,7 +19,13 @@ namespace webApi
             services.AddControllersWithViews();
             services.AddEndpointsApiExplorer();
 
-             services.AddCors();
+            services.AddCors(options => {
+                options.AddPolicy(name: _Cors, builder =>
+                {
+                    builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                    .AllowAnyHeader().AllowAnyMethod();
+                });
+            });
     
             services.AddDbContext<Data.ApplicationDbContext>(options =>
             {
@@ -48,13 +55,8 @@ namespace webApi
                 app.UseHsts();
             }
 
-            app.UseCors(builder =>
-            {
-                builder.AllowAnyOrigin();
-                builder.AllowAnyHeader();
-                builder.AllowAnyMethod();
-            });
-            
+            app.UseCors(_Cors);
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -66,6 +68,7 @@ namespace webApi
             // Configura la canalización de solicitud HTTP aquí
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 //Ruta de los controladores
