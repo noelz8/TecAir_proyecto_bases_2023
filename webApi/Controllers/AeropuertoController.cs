@@ -12,47 +12,47 @@ namespace webApi
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AvionController : ControllerBase
+    public class AeropuertoController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public AvionController(ApplicationDbContext context)
+        public AeropuertoController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Avion
+        // GET: api/Aeropuerto
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Avion>>> GetAviones()
+        public async Task<ActionResult<IEnumerable<Aeropuerto>>> GetAeropuertos()
         {
-            return await _context.Aviones.ToListAsync();
+            return await _context.Aeropuertos.ToListAsync();
         }
 
-        // GET: api/Avion/5
+        // GET: api/Aeropuerto/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Avion>> GetAvion(int id)
+        public async Task<ActionResult<Aeropuerto>> GetAeropuerto(string id)
         {
-            var avion = await _context.Aviones.FindAsync(id);
+            var aeropuerto = await _context.Aeropuertos.FindAsync(id);
 
-            if (avion == null)
+            if (aeropuerto == null)
             {
                 return NotFound();
             }
 
-            return avion;
+            return aeropuerto;
         }
 
-        // PUT: api/Avion/5
+        // PUT: api/Aeropuerto/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAvion(int id, Avion avion)
+        public async Task<IActionResult> PutAeropuerto(string id, Aeropuerto aeropuerto)
         {
-            if (id != avion.Avionid)
+            if (id != aeropuerto.Codigoaeropuerto)
             {
                 return BadRequest();
             }
 
-            _context.Entry(avion).State = EntityState.Modified;
+            _context.Entry(aeropuerto).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace webApi
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AvionExists(id))
+                if (!AeropuertoExists(id))
                 {
                     return NotFound();
                 }
@@ -73,19 +73,19 @@ namespace webApi
             return NoContent();
         }
 
-        // POST: api/Avion
+        // POST: api/Aeropuerto
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Avion>> PostAvion(Avion avion)
+        public async Task<ActionResult<Aeropuerto>> PostAeropuerto(Aeropuerto aeropuerto)
         {
-            _context.Aviones.Add(avion);
+            _context.Aeropuertos.Add(aeropuerto);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (AvionExists(avion.Avionid))
+                if (AeropuertoExists(aeropuerto.Codigoaeropuerto))
                 {
                     return Conflict();
                 }
@@ -95,28 +95,28 @@ namespace webApi
                 }
             }
 
-            return CreatedAtAction("GetAvion", new { id = avion.Avionid }, avion);
+            return CreatedAtAction("GetAeropuerto", new { id = aeropuerto.Codigoaeropuerto }, aeropuerto);
         }
 
-        // DELETE: api/Avion/5
+        // DELETE: api/Aeropuerto/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAvion(int id)
+        public async Task<IActionResult> DeleteAeropuerto(string id)
         {
-            var avion = await _context.Aviones.FindAsync(id);
-            if (avion == null)
+            var aeropuerto = await _context.Aeropuertos.FindAsync(id);
+            if (aeropuerto == null)
             {
                 return NotFound();
             }
 
-            _context.Aviones.Remove(avion);
+            _context.Aeropuertos.Remove(aeropuerto);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool AvionExists(int id)
+        private bool AeropuertoExists(string id)
         {
-            return _context.Aviones.Any(e => e.Avionid == id);
+            return _context.Aeropuertos.Any(e => e.Codigoaeropuerto == id);
         }
     }
 }

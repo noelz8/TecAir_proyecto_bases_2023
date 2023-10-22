@@ -11,5 +11,4 @@ public partial class Promocion
 
     public string Destino { get; set; }
 
-
 }

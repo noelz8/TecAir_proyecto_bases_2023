@@ -5,9 +5,12 @@ namespace webApi.Models;
 
 public partial class Estudiante
 {
-    public int Carnet { get; set; }
+    public string Carnet { get; set; }
 
     public int? Clienteid { get; set; }
 
-   
+    public int Cantidaddeviajes { get; set; }
+
+    public int? Millas { get; set; }
+
 }

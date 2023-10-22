@@ -15,12 +15,10 @@ namespace webApi
     public class ClienteController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly SQLiteDbContext _sqliteContext;
 
-        public ClienteController(ApplicationDbContext context, SQLiteDbContext sqliteContext)
+        public ClienteController(ApplicationDbContext context)
         {
             _context = context;
-            _sqliteContext = sqliteContext;
         }
 
         // GET: api/Cliente
@@ -40,7 +38,6 @@ namespace webApi
             {
                 return NotFound();
             }
-            
 
             return cliente;
         }

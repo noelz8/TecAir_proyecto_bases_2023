@@ -12,47 +12,47 @@ namespace webApi
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AvionController : ControllerBase
+    public class PromocionesporviajeController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public AvionController(ApplicationDbContext context)
+        public PromocionesporviajeController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Avion
+        // GET: api/Promocionesporviaje
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Avion>>> GetAviones()
+        public async Task<ActionResult<IEnumerable<Promocionesporviaje>>> GetPromocionesporviajes()
         {
-            return await _context.Aviones.ToListAsync();
+            return await _context.Promocionesporviajes.ToListAsync();
         }
 
-        // GET: api/Avion/5
+        // GET: api/Promocionesporviaje/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Avion>> GetAvion(int id)
+        public async Task<ActionResult<Promocionesporviaje>> GetPromocionesporviaje(int id)
         {
-            var avion = await _context.Aviones.FindAsync(id);
+            var promocionesporviaje = await _context.Promocionesporviajes.FindAsync(id);
 
-            if (avion == null)
+            if (promocionesporviaje == null)
             {
                 return NotFound();
             }
 
-            return avion;
+            return promocionesporviaje;
         }
 
-        // PUT: api/Avion/5
+        // PUT: api/Promocionesporviaje/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAvion(int id, Avion avion)
+        public async Task<IActionResult> PutPromocionesporviaje(int id, Promocionesporviaje promocionesporviaje)
         {
-            if (id != avion.Avionid)
+            if (id != promocionesporviaje.Viajeid)
             {
                 return BadRequest();
             }
 
-            _context.Entry(avion).State = EntityState.Modified;
+            _context.Entry(promocionesporviaje).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace webApi
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AvionExists(id))
+                if (!PromocionesporviajeExists(id))
                 {
                     return NotFound();
                 }
@@ -73,19 +73,19 @@ namespace webApi
             return NoContent();
         }
 
-        // POST: api/Avion
+        // POST: api/Promocionesporviaje
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Avion>> PostAvion(Avion avion)
+        public async Task<ActionResult<Promocionesporviaje>> PostPromocionesporviaje(Promocionesporviaje promocionesporviaje)
         {
-            _context.Aviones.Add(avion);
+            _context.Promocionesporviajes.Add(promocionesporviaje);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (AvionExists(avion.Avionid))
+                if (PromocionesporviajeExists(promocionesporviaje.Viajeid))
                 {
                     return Conflict();
                 }
@@ -95,28 +95,28 @@ namespace webApi
                 }
             }
 
-            return CreatedAtAction("GetAvion", new { id = avion.Avionid }, avion);
+            return CreatedAtAction("GetPromocionesporviaje", new { id = promocionesporviaje.Viajeid }, promocionesporviaje);
         }
 
-        // DELETE: api/Avion/5
+        // DELETE: api/Promocionesporviaje/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAvion(int id)
+        public async Task<IActionResult> DeletePromocionesporviaje(int id)
         {
-            var avion = await _context.Aviones.FindAsync(id);
-            if (avion == null)
+            var promocionesporviaje = await _context.Promocionesporviajes.FindAsync(id);
+            if (promocionesporviaje == null)
             {
                 return NotFound();
             }
 
-            _context.Aviones.Remove(avion);
+            _context.Promocionesporviajes.Remove(promocionesporviaje);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool AvionExists(int id)
+        private bool PromocionesporviajeExists(int id)
         {
-            return _context.Aviones.Any(e => e.Avionid == id);
+            return _context.Promocionesporviajes.Any(e => e.Viajeid == id);
         }
     }
 }

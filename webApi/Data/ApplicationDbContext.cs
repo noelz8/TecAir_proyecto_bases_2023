@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using webApi.Models;
-
 namespace webApi.Data;
 
 public partial class ApplicationDbContext : DbContext
@@ -16,7 +15,11 @@ public partial class ApplicationDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Avion> Avions { get; set; }
+    public virtual DbSet<Aeropuerto> Aeropuertos { get; set; }
+
+    public virtual DbSet<Asiento> Asientos { get; set; }
+
+    public virtual DbSet<Avion> Aviones { get; set; }
 
     public virtual DbSet<Cliente> Clientes { get; set; }
 
@@ -28,26 +31,64 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<Maletum> Maleta { get; set; }
 
-    public virtual DbSet<Origen> Origens { get; set; }
+    public virtual DbSet<Origen> Origenes { get; set; }
 
-    public virtual DbSet<Promocion> Promocions { get; set; }
+    public virtual DbSet<Promocion> Promociones { get; set; }
+
+    public virtual DbSet<Promocionesporviaje> Promocionesporviajes { get; set; }
 
     public virtual DbSet<Reservacion> Reservacions { get; set; }
 
-    public virtual DbSet<Universidad> Universidads { get; set; }
+    public virtual DbSet<Reservacionesporviaje> Reservacionesporviajes { get; set; }
+
+    public virtual DbSet<Universidad> Universidades { get; set; }
 
     public virtual DbSet<Viaje> Viajes { get; set; }
+
+    public virtual DbSet<Vuelo> Vuelos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=tecair;Username=postgres;Password=AWjanome30;");
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        // Especifica la cadena de conexión para SQLite
-        optionsBuilder.UseSqlite("Data Source= ../tecair/DBSqllite/tec_air_lite.db");
-    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Aeropuerto>(entity =>
+        {
+            entity.HasKey(e => e.Codigoaeropuerto).HasName("aeropuerto_pkey");
+
+            entity.ToTable("aeropuerto");
+
+            entity.Property(e => e.Codigoaeropuerto)
+                .HasMaxLength(10)
+                .HasColumnName("codigoaeropuerto");
+            entity.Property(e => e.Ciudad)
+                .HasMaxLength(100)
+                .HasColumnName("ciudad");
+            entity.Property(e => e.Pais)
+                .HasMaxLength(100)
+                .HasColumnName("pais");
+        });
+
+        modelBuilder.Entity<Asiento>(entity =>
+        {
+            entity.HasKey(e => e.Asientoid).HasName("asiento_pkey");
+
+            entity.ToTable("asiento");
+
+            entity.Property(e => e.Asientoid)
+                .ValueGeneratedNever()
+                .HasColumnName("asientoid");
+            entity.Property(e => e.Avionid).HasColumnName("avionid");
+            entity.Property(e => e.Estado)
+                .HasMaxLength(20)
+                .HasColumnName("estado");
+            entity.Property(e => e.Posicionasiento)
+                .HasMaxLength(10)
+                .HasColumnName("posicionasiento");
+
+
+        });
+
         modelBuilder.Entity<Avion>(entity =>
         {
             entity.HasKey(e => e.Avionid).HasName("avion_pkey");
@@ -58,22 +99,12 @@ public partial class ApplicationDbContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("avionid");
             entity.Property(e => e.Aerolinea)
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("aerolinea");
             entity.Property(e => e.Capacidad).HasColumnName("capacidad");
-            entity.Property(e => e.Codigoaeropuertodestino)
-                .HasMaxLength(3)
-                .IsFixedLength()
-                .HasColumnName("codigoaeropuertodestino");
-            entity.Property(e => e.Codigoaeropuertoorigen)
-                .HasMaxLength(3)
-                .IsFixedLength()
-                .HasColumnName("codigoaeropuertoorigen");
-            entity.Property(e => e.Imagen)
-                .HasMaxLength(255)
-                .HasColumnName("imagen");
+            entity.Property(e => e.Imagen).HasColumnName("imagen");
             entity.Property(e => e.Modelo)
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("modelo");
         });
 
@@ -93,45 +124,45 @@ public partial class ApplicationDbContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("apellido1");
             entity.Property(e => e.Apellido2)
-                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("apellido2");
+            entity.Property(e => e.Contraseña)
+                .IsRequired()
+                .HasMaxLength(100)
+                .HasColumnName("contraseña");
             entity.Property(e => e.Correo)
                 .IsRequired()
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("correo");
             entity.Property(e => e.Nombre)
                 .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("nombre");
             entity.Property(e => e.Telefono)
-                .IsRequired()
                 .HasMaxLength(15)
                 .HasColumnName("telefono");
         });
 
         modelBuilder.Entity<Destino>(entity =>
         {
-            entity.HasKey(e => e.Codigoaeropuertodestino).HasName("destino_pkey");
+            entity.HasKey(e => e.Codigoaeropuerto).HasName("destino_pkey");
 
             entity.ToTable("destino");
 
-            entity.Property(e => e.Codigoaeropuertodestino)
-                .HasMaxLength(3)
-                .IsFixedLength()
-                .HasColumnName("codigoaeropuertodestino");
+            entity.Property(e => e.Codigoaeropuerto)
+                .HasMaxLength(10)
+                .HasColumnName("codigoaeropuerto");
             entity.Property(e => e.Ciudad)
-                .IsRequired()
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("ciudad");
-            entity.Property(e => e.Horallegada).HasColumnName("horallegada");
             entity.Property(e => e.Pais)
-                .IsRequired()
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("pais");
             entity.Property(e => e.Puertaingreso)
                 .HasMaxLength(10)
                 .HasColumnName("puertaingreso");
+
+
         });
 
         modelBuilder.Entity<Escala>(entity =>
@@ -141,18 +172,19 @@ public partial class ApplicationDbContext : DbContext
             entity.ToTable("escala");
 
             entity.Property(e => e.Codigoaeropuertoescala)
-                .HasMaxLength(3)
+                .HasMaxLength(10)
                 .HasColumnName("codigoaeropuertoescala");
-            entity.Property(e => e.Avionid).HasColumnName("avionid");
             entity.Property(e => e.Ciudad)
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("ciudad");
             entity.Property(e => e.Pais)
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("pais");
+            entity.Property(e => e.Vueloid).HasColumnName("vueloid");
             entity.Property(e => e.Vueloorigen)
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("vueloorigen");
+
 
         });
 
@@ -163,9 +195,14 @@ public partial class ApplicationDbContext : DbContext
             entity.ToTable("estudiante");
 
             entity.Property(e => e.Carnet)
-                .ValueGeneratedNever()
+                .HasMaxLength(20)
                 .HasColumnName("carnet");
+            entity.Property(e => e.Cantidaddeviajes).HasColumnName("cantidaddeviajes");
             entity.Property(e => e.Clienteid).HasColumnName("clienteid");
+            entity.Property(e => e.Millas)
+                .HasComputedColumnSql("(cantidaddeviajes * 100)", true)
+                .HasColumnName("millas");
+
 
         });
 
@@ -178,42 +215,38 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Numero)
                 .ValueGeneratedNever()
                 .HasColumnName("numero");
+            entity.Property(e => e.Clienteid).HasColumnName("clienteid");
             entity.Property(e => e.Color)
-                .IsRequired()
                 .HasMaxLength(50)
                 .HasColumnName("color");
-            entity.Property(e => e.Dueño)
-                .IsRequired()
-                .HasMaxLength(255)
-                .HasColumnName("dueño");
             entity.Property(e => e.Peso)
-                .HasPrecision(10, 2)
+                .HasPrecision(5, 2)
                 .HasColumnName("peso");
             entity.Property(e => e.Reservacionid).HasColumnName("reservacionid");
+
+
         });
 
         modelBuilder.Entity<Origen>(entity =>
         {
-            entity.HasKey(e => e.Codigoaeropuertoorigen).HasName("origen_pkey");
+            entity.HasKey(e => e.Codigoaeropuerto).HasName("origen_pkey");
 
             entity.ToTable("origen");
 
-            entity.Property(e => e.Codigoaeropuertoorigen)
-                .HasMaxLength(3)
-                .IsFixedLength()
-                .HasColumnName("codigoaeropuertoorigen");
+            entity.Property(e => e.Codigoaeropuerto)
+                .HasMaxLength(10)
+                .HasColumnName("codigoaeropuerto");
             entity.Property(e => e.Ciudad)
-                .IsRequired()
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("ciudad");
-            entity.Property(e => e.Horasalida).HasColumnName("horasalida");
             entity.Property(e => e.Pais)
-                .IsRequired()
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("pais");
             entity.Property(e => e.Puertaingreso)
                 .HasMaxLength(10)
                 .HasColumnName("puertaingreso");
+
+
         });
 
         modelBuilder.Entity<Promocion>(entity =>
@@ -227,12 +260,25 @@ public partial class ApplicationDbContext : DbContext
                 .HasColumnName("promocionid");
             entity.Property(e => e.Destino)
                 .IsRequired()
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("destino");
             entity.Property(e => e.Origen)
                 .IsRequired()
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("origen");
+        });
+
+        modelBuilder.Entity<Promocionesporviaje>(entity =>
+        {
+            entity.HasKey(e => new { e.Viajeid, e.Promocionid }).HasName("promocionesporviaje_pkey");
+
+            entity.ToTable("promocionesporviaje");
+
+            entity.Property(e => e.Viajeid).HasColumnName("viajeid");
+            entity.Property(e => e.Promocionid).HasColumnName("promocionid");
+            entity.Property(e => e.Periodo).HasColumnName("periodo");
+
+
         });
 
         modelBuilder.Entity<Reservacion>(entity =>
@@ -250,6 +296,20 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Dia).HasColumnName("dia");
             entity.Property(e => e.Mes).HasColumnName("mes");
 
+
+        });
+
+        modelBuilder.Entity<Reservacionesporviaje>(entity =>
+        {
+            entity.HasKey(e => new { e.Viajeid, e.Reservacionid }).HasName("reservacionesporviaje_pkey");
+
+            entity.ToTable("reservacionesporviaje");
+
+            entity.Property(e => e.Viajeid).HasColumnName("viajeid");
+            entity.Property(e => e.Reservacionid).HasColumnName("reservacionid");
+            entity.Property(e => e.Numerodeasiento).HasColumnName("numerodeasiento");
+
+
         });
 
         modelBuilder.Entity<Universidad>(entity =>
@@ -259,9 +319,12 @@ public partial class ApplicationDbContext : DbContext
             entity.ToTable("universidad");
 
             entity.Property(e => e.Nombre)
-                .HasMaxLength(255)
+                .HasMaxLength(100)
                 .HasColumnName("nombre");
-            entity.Property(e => e.Carnet).HasColumnName("carnet");
+            entity.Property(e => e.Carnetestudiante)
+                .HasMaxLength(20)
+                .HasColumnName("carnetestudiante");
+
 
         });
 
@@ -274,14 +337,42 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.Viajeid)
                 .ValueGeneratedNever()
                 .HasColumnName("viajeid");
-            entity.Property(e => e.Avionid).HasColumnName("avionid");
+            entity.Property(e => e.Estado)
+                .IsRequired()
+                .HasMaxLength(20)
+                .HasColumnName("estado");
             entity.Property(e => e.Fecha).HasColumnName("fecha");
-            entity.Property(e => e.Horario).HasColumnName("horario");
-            entity.Property(e => e.Numeroasiento).HasColumnName("numeroasiento");
+            entity.Property(e => e.Horario)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("horario");
             entity.Property(e => e.Precio)
                 .HasPrecision(10, 2)
                 .HasColumnName("precio");
-            entity.Property(e => e.Reservacionid).HasColumnName("reservacionid");
+        });
+
+        modelBuilder.Entity<Vuelo>(entity =>
+        {
+            entity.HasKey(e => e.Vueloid).HasName("vuelo_pkey");
+
+            entity.ToTable("vuelo");
+
+            entity.Property(e => e.Vueloid)
+                .ValueGeneratedNever()
+                .HasColumnName("vueloid");
+            entity.Property(e => e.Avionid).HasColumnName("avionid");
+            entity.Property(e => e.Codigoaeropuertodestino)
+                .HasMaxLength(10)
+                .HasColumnName("codigoaeropuertodestino");
+            entity.Property(e => e.Codigoaeropuertoorigen)
+                .HasMaxLength(10)
+                .HasColumnName("codigoaeropuertoorigen");
+            entity.Property(e => e.Destino)
+                .HasMaxLength(100)
+                .HasColumnName("destino");
+            entity.Property(e => e.Origen)
+                .HasMaxLength(100)
+                .HasColumnName("origen");
+            entity.Property(e => e.Viajeid).HasColumnName("viajeid");
 
         });
 

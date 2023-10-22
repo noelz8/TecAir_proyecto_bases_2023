@@ -23,16 +23,16 @@ namespace webApi
 
         // GET: api/Promocion
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Promocion>>> GetPromocions()
+        public async Task<ActionResult<IEnumerable<Promocion>>> GetPromociones()
         {
-            return await _context.Promocions.ToListAsync();
+            return await _context.Promociones.ToListAsync();
         }
 
         // GET: api/Promocion/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Promocion>> GetPromocion(int id)
         {
-            var promocion = await _context.Promocions.FindAsync(id);
+            var promocion = await _context.Promociones.FindAsync(id);
 
             if (promocion == null)
             {
@@ -78,7 +78,7 @@ namespace webApi
         [HttpPost]
         public async Task<ActionResult<Promocion>> PostPromocion(Promocion promocion)
         {
-            _context.Promocions.Add(promocion);
+            _context.Promociones.Add(promocion);
             try
             {
                 await _context.SaveChangesAsync();
@@ -102,13 +102,13 @@ namespace webApi
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePromocion(int id)
         {
-            var promocion = await _context.Promocions.FindAsync(id);
+            var promocion = await _context.Promociones.FindAsync(id);
             if (promocion == null)
             {
                 return NotFound();
             }
 
-            _context.Promocions.Remove(promocion);
+            _context.Promociones.Remove(promocion);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -116,7 +116,7 @@ namespace webApi
 
         private bool PromocionExists(int id)
         {
-            return _context.Promocions.Any(e => e.Promocionid == id);
+            return _context.Promociones.Any(e => e.Promocionid == id);
         }
     }
 }

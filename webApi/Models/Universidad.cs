@@ -7,6 +7,5 @@ public partial class Universidad
 {
     public string Nombre { get; set; }
 
-    public int? Carnet { get; set; }
-
+    public string Carnetestudiante { get; set; }
 }

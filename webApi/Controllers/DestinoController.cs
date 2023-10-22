@@ -47,7 +47,7 @@ namespace webApi
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDestino(string id, Destino destino)
         {
-            if (id != destino.Codigoaeropuertodestino)
+            if (id != destino.Codigoaeropuerto)
             {
                 return BadRequest();
             }
@@ -85,7 +85,7 @@ namespace webApi
             }
             catch (DbUpdateException)
             {
-                if (DestinoExists(destino.Codigoaeropuertodestino))
+                if (DestinoExists(destino.Codigoaeropuerto))
                 {
                     return Conflict();
                 }
@@ -95,7 +95,7 @@ namespace webApi
                 }
             }
 
-            return CreatedAtAction("GetDestino", new { id = destino.Codigoaeropuertodestino }, destino);
+            return CreatedAtAction("GetDestino", new { id = destino.Codigoaeropuerto }, destino);
         }
 
         // DELETE: api/Destino/5
@@ -116,7 +116,7 @@ namespace webApi
 
         private bool DestinoExists(string id)
         {
-            return _context.Destinos.Any(e => e.Codigoaeropuertodestino == id);
+            return _context.Destinos.Any(e => e.Codigoaeropuerto == id);
         }
     }
 }

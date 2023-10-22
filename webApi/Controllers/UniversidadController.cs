@@ -23,16 +23,16 @@ namespace webApi
 
         // GET: api/Universidad
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Universidad>>> GetUniversidads()
+        public async Task<ActionResult<IEnumerable<Universidad>>> GetUniversidades()
         {
-            return await _context.Universidads.ToListAsync();
+            return await _context.Universidades.ToListAsync();
         }
 
         // GET: api/Universidad/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Universidad>> GetUniversidad(string id)
         {
-            var universidad = await _context.Universidads.FindAsync(id);
+            var universidad = await _context.Universidades.FindAsync(id);
 
             if (universidad == null)
             {
@@ -78,7 +78,7 @@ namespace webApi
         [HttpPost]
         public async Task<ActionResult<Universidad>> PostUniversidad(Universidad universidad)
         {
-            _context.Universidads.Add(universidad);
+            _context.Universidades.Add(universidad);
             try
             {
                 await _context.SaveChangesAsync();
@@ -102,13 +102,13 @@ namespace webApi
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUniversidad(string id)
         {
-            var universidad = await _context.Universidads.FindAsync(id);
+            var universidad = await _context.Universidades.FindAsync(id);
             if (universidad == null)
             {
                 return NotFound();
             }
 
-            _context.Universidads.Remove(universidad);
+            _context.Universidades.Remove(universidad);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -116,7 +116,7 @@ namespace webApi
 
         private bool UniversidadExists(string id)
         {
-            return _context.Universidads.Any(e => e.Nombre == id);
+            return _context.Universidades.Any(e => e.Nombre == id);
         }
     }
 }

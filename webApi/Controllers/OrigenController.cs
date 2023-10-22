@@ -23,16 +23,16 @@ namespace webApi
 
         // GET: api/Origen
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Origen>>> GetOrigens()
+        public async Task<ActionResult<IEnumerable<Origen>>> GetOrigenes()
         {
-            return await _context.Origens.ToListAsync();
+            return await _context.Origenes.ToListAsync();
         }
 
         // GET: api/Origen/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Origen>> GetOrigen(string id)
         {
-            var origen = await _context.Origens.FindAsync(id);
+            var origen = await _context.Origenes.FindAsync(id);
 
             if (origen == null)
             {
@@ -47,7 +47,7 @@ namespace webApi
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrigen(string id, Origen origen)
         {
-            if (id != origen.Codigoaeropuertoorigen)
+            if (id != origen.Codigoaeropuerto)
             {
                 return BadRequest();
             }
@@ -78,14 +78,14 @@ namespace webApi
         [HttpPost]
         public async Task<ActionResult<Origen>> PostOrigen(Origen origen)
         {
-            _context.Origens.Add(origen);
+            _context.Origenes.Add(origen);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (OrigenExists(origen.Codigoaeropuertoorigen))
+                if (OrigenExists(origen.Codigoaeropuerto))
                 {
                     return Conflict();
                 }
@@ -95,20 +95,20 @@ namespace webApi
                 }
             }
 
-            return CreatedAtAction("GetOrigen", new { id = origen.Codigoaeropuertoorigen }, origen);
+            return CreatedAtAction("GetOrigen", new { id = origen.Codigoaeropuerto }, origen);
         }
 
         // DELETE: api/Origen/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrigen(string id)
         {
-            var origen = await _context.Origens.FindAsync(id);
+            var origen = await _context.Origenes.FindAsync(id);
             if (origen == null)
             {
                 return NotFound();
             }
 
-            _context.Origens.Remove(origen);
+            _context.Origenes.Remove(origen);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -116,7 +116,7 @@ namespace webApi
 
         private bool OrigenExists(string id)
         {
-            return _context.Origens.Any(e => e.Codigoaeropuertoorigen == id);
+            return _context.Origenes.Any(e => e.Codigoaeropuerto == id);
         }
     }
 }

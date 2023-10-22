@@ -12,47 +12,47 @@ namespace webApi
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AvionController : ControllerBase
+    public class VueloController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public AvionController(ApplicationDbContext context)
+        public VueloController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Avion
+        // GET: api/Vuelo
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Avion>>> GetAviones()
+        public async Task<ActionResult<IEnumerable<Vuelo>>> GetVuelos()
         {
-            return await _context.Aviones.ToListAsync();
+            return await _context.Vuelos.ToListAsync();
         }
 
-        // GET: api/Avion/5
+        // GET: api/Vuelo/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Avion>> GetAvion(int id)
+        public async Task<ActionResult<Vuelo>> GetVuelo(int id)
         {
-            var avion = await _context.Aviones.FindAsync(id);
+            var vuelo = await _context.Vuelos.FindAsync(id);
 
-            if (avion == null)
+            if (vuelo == null)
             {
                 return NotFound();
             }
 
-            return avion;
+            return vuelo;
         }
 
-        // PUT: api/Avion/5
+        // PUT: api/Vuelo/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAvion(int id, Avion avion)
+        public async Task<IActionResult> PutVuelo(int id, Vuelo vuelo)
         {
-            if (id != avion.Avionid)
+            if (id != vuelo.Vueloid)
             {
                 return BadRequest();
             }
 
-            _context.Entry(avion).State = EntityState.Modified;
+            _context.Entry(vuelo).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace webApi
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AvionExists(id))
+                if (!VueloExists(id))
                 {
                     return NotFound();
                 }
@@ -73,19 +73,19 @@ namespace webApi
             return NoContent();
         }
 
-        // POST: api/Avion
+        // POST: api/Vuelo
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Avion>> PostAvion(Avion avion)
+        public async Task<ActionResult<Vuelo>> PostVuelo(Vuelo vuelo)
         {
-            _context.Aviones.Add(avion);
+            _context.Vuelos.Add(vuelo);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (AvionExists(avion.Avionid))
+                if (VueloExists(vuelo.Vueloid))
                 {
                     return Conflict();
                 }
@@ -95,28 +95,28 @@ namespace webApi
                 }
             }
 
-            return CreatedAtAction("GetAvion", new { id = avion.Avionid }, avion);
+            return CreatedAtAction("GetVuelo", new { id = vuelo.Vueloid }, vuelo);
         }
 
-        // DELETE: api/Avion/5
+        // DELETE: api/Vuelo/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAvion(int id)
+        public async Task<IActionResult> DeleteVuelo(int id)
         {
-            var avion = await _context.Aviones.FindAsync(id);
-            if (avion == null)
+            var vuelo = await _context.Vuelos.FindAsync(id);
+            if (vuelo == null)
             {
                 return NotFound();
             }
 
-            _context.Aviones.Remove(avion);
+            _context.Vuelos.Remove(vuelo);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool AvionExists(int id)
+        private bool VueloExists(int id)
         {
-            return _context.Aviones.Any(e => e.Avionid == id);
+            return _context.Vuelos.Any(e => e.Vueloid == id);
         }
     }
 }

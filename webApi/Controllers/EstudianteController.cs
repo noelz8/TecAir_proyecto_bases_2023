@@ -30,7 +30,7 @@ namespace webApi
 
         // GET: api/Estudiante/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Estudiante>> GetEstudiante(int id)
+        public async Task<ActionResult<Estudiante>> GetEstudiante(string id)
         {
             var estudiante = await _context.Estudiantes.FindAsync(id);
 
@@ -45,7 +45,7 @@ namespace webApi
         // PUT: api/Estudiante/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEstudiante(int id, Estudiante estudiante)
+        public async Task<IActionResult> PutEstudiante(string id, Estudiante estudiante)
         {
             if (id != estudiante.Carnet)
             {
@@ -100,7 +100,7 @@ namespace webApi
 
         // DELETE: api/Estudiante/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEstudiante(int id)
+        public async Task<IActionResult> DeleteEstudiante(string id)
         {
             var estudiante = await _context.Estudiantes.FindAsync(id);
             if (estudiante == null)
@@ -114,7 +114,7 @@ namespace webApi
             return NoContent();
         }
 
-        private bool EstudianteExists(int id)
+        private bool EstudianteExists(string id)
         {
             return _context.Estudiantes.Any(e => e.Carnet == id);
         }
