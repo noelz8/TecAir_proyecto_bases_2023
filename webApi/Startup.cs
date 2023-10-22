@@ -22,6 +22,10 @@ namespace webApi
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
+            services.AddDbContext<SQLiteDbContext>(options =>
+            {
+                options.UseSqlite(Configuration.GetConnectionString("SQLiteConnection"));
+            });
 
             services.AddSwaggerGen(c =>
             {

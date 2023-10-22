@@ -41,6 +41,11 @@ public partial class ApplicationDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=tecair;Username=postgres;Password=AWjanome30;");
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        // Especifica la cadena de conexión para SQLite
+        optionsBuilder.UseSqlite("Data Source= ../tecair/DBSqllite/tec_air_lite.db");
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Avion>(entity =>
