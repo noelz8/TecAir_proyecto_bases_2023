@@ -11,6 +11,8 @@ import { RegistroViajeComponent } from './registro-viaje/registro-viaje.componen
 import { ManejoViajesComponent } from './manejo-viajes/manejo-viajes.component';
 import { CheckInPasajeroComponent } from './check-in-pasajero/check-in-pasajero.component';
 import { AsignacionMaletaComponent } from './asignacion-maleta/asignacion-maleta.component';
+import { HttpClientModule } from '@angular/common/http'; // Asegúrate de importar HttpClientModule
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { AsignacionMaletaComponent } from './asignacion-maleta/asignacion-maleta
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    
     
   ],
   providers: [],

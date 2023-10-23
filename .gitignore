@@ -31,3 +31,7 @@
 *.db
 .vs/
 Publish/
+webApi/obj/webApi.csproj.nuget.dgspec.json
+webApi/obj/project.nuget.cache
+webApi/obj/project.nuget.cache
+webApi/obj/project.nuget.cache

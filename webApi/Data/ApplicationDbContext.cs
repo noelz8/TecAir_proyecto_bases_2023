@@ -48,7 +48,7 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<Vuelo> Vuelos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=tecair;Username=postgres;Password=AWjanome30;");
+        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=tecair;Username=postgres;Password=admin;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
