@@ -9,6 +9,13 @@ import { FormControl } from '@angular/forms';
 })
 export class BusquedaVuelosComponent implements OnInit {
 
+  hayEscala: string = 'no'; // Valor predeterminado
+
+  // Función que maneja el cambio en la presencia de escalas
+  onChangeEscala(event: any) {
+    this.hayEscala = event.target.value;
+  }
+
   constructor() {
 
   }

@@ -9,3 +9,19 @@ body{
     width: 100%;
 
 }
+
+.body-container {
+  background-image: url('https://megustavolar.iberia.com/wp-content/uploads/2022/04/istock-932651818.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.5); /* Ajusta el último valor para la opacidad deseada */
+}
+
+.card {
+  width: 100%;
+  max-width: 1200px; /* Ajusta el valor según tus necesidades */
+  margin: 0 auto;
+}
