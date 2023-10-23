@@ -1,61 +1,47 @@
 <div class="body-container">
   <div class="container">
     <div class="row justify-content-center align-items-center" style="height:100vh">
-      <div class="col-8">
         <div class="card">
           <div class="card-body">
-            <h2 class="card-title text-center">Buscar Vuelo</h2>
+            <h2 class="card-title text-center">Crear Usuario</h2>
             <div class="row">
-              <div class="col-6">
+
+              
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">Detalles de Origen</h5>
+                    <h5 class="card-title">Creacion de usuario</h5>
 
                     <div class="form-group">
-                      <label for="ciudad-origen">Ciudad</label>
-                      <input type="text" class="form-control" id="ciudad-origen" placeholder="Ingrese la ciudad del aeropuerto">
+                      <label for="nombre">Nombre</label>
+                      <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
                     </div>
                     <div class="form-group">
-                      <label for="pais-origen">País</label>
-                      <input type="text" class="form-control" id="pais-origen" placeholder="Ingrese el país del aeropuerto">
+                      <label for="apellidos">Apellidos</label>
+                      <input type="text" class="form-control" id="apellidos" placeholder="Ingrese sus apellidos">
+                    </div>
+                    <div class="form-group">
+                      <label for="apellidos">Apellidos</label>
+                      <input type="text" class="form-control" id="apellidos" placeholder="Ingrese sus apellidos">
+                    </div>
+                    <div class="form-group">
+                      <label for="correo">Correo</label>
+                      <input type="text" class="form-control" id="correo" placeholder="Ingrese su correo electronico">
                     </div>
 
                     <div class="form-group">
-                      <label for="hora-llegada">Fecha de Partida</label>
-                      <input type="datetime-local" class="form-control" id="hora-llegada" placeholder="Ingrese la fecha y hora de llegada de salida">
+                      <label for="Fecha de Nacimiento">Fecha de Nacimiento</label>
+                      <input type="datetime-local" class="form-control" id="nacimiento" placeholder="Ingrese la fecha de nacimiento">
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-6">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title">Detalles de Destino</h5>
-
-                    <div class="form-group">
-                      <label for="ciudad-destino">Ciudad</label>
-                      <input type="text" class="form-control" id="ciudad-destino" placeholder="Ingrese la ciudad del aeropuerto">
-                    </div>
-                    <div class="form-group">
-                      <label for="pais-destino">País</label>
-                      <input type="text" class="form-control" id="pais-destino" placeholder="Ingrese el país del aeropuerto">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="hora-llegada-destino">Fecha de Reingreso</label>
-                      <input type="datetime-local" class="form-control" id="hora-llegada-destino" placeholder="Ingrese la fecha y hora de llegada">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+              
 
 
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Con Escala</h5>
+                  <h5 class="card-title">Estudiante</h5>
                   <div class="form-group">
-                    <label for="hay-escala">¿Necesita Escala?</label>
+                    <label for="hay-escala">¿Usted es estudiante?</label>
                     <select class="form-control" id="hay-escala" [(ngModel)]="hayEscala">
                       <option value="si">Sí</option>
                       <option value="no">No</option>
@@ -64,18 +50,22 @@
                   <div *ngIf="hayEscala==='si'">
 
                   </div>
+
+                  <div class="form-group">
+                    <label for="universidad">Universidad</label>
+                    <input type="text" class="form-control" id="universidad" placeholder="Ingrese el nombre de su Universidad">
+                  </div>
+
                 </div>
               </div>
 
 
 
-
-
             </div>
-            <button type="submit" class="btn btn-primary btn-block mt-3">Buscar Vuelo</button>
+            <button type="submit" class="btn btn-primary btn-block mt-3">Registrar Usuario</button>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </div>
+
