@@ -42,7 +42,7 @@ export class RegistroClienteComponent {
 
     const dataEstudiante = {
       carnet: estudiante.carnet,
-      clientid: estudiante.clienteid,
+      clienteid: estudiante.clienteid,
       cantidaddeviajes: estudiante.cantidaddeviajes,
       millas: estudiante.millas,
     }

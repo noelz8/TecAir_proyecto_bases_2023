@@ -27,8 +27,8 @@
                       <input type="text" class="form-control" id="puerta-ingreso-origen" placeholder="Ingrese la puerta de ingreso">
                     </div>
                     <div class="form-group">
-                      <label for="hora-llegada">Hora de Llegada</label>
-                      <input type="datetime-local" class="form-control" id="hora-llegada" placeholder="Ingrese la fecha y hora de llegada de salida">
+                      <label for="vueloId">Número de vuelo</label>
+                      <input type="number" class="form-control" id="vueloId" placeholder="Ingrese el número de vuelo">
                     </div>
                   </div>
                 </div>
@@ -52,10 +52,6 @@
                     <div class="form-group">
                       <label for="puerta-ingreso-destino">Puerta de Ingreso</label>
                       <input type="text" class="form-control" id="puerta-ingreso-destino" placeholder="Ingrese la puerta de salida">
-                    </div>
-                    <div class="form-group">
-                      <label for="hora-llegada-destino">Hora de Llegada</label>
-                      <input type="datetime-local" class="form-control" id="hora-llegada-destino" placeholder="Ingrese la fecha y hora de llegada">
                     </div>
                   </div>
                 </div>
@@ -100,7 +96,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block mt-3">Registrar Vuelo</button>
+            <button type="submit" class="btn btn-primary btn-block mt-3" (click)="enviarDatos()">Registrar Vuelo</button>
           </div>
         </div>
       </div>
