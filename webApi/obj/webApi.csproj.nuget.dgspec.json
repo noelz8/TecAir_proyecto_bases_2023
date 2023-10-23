@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< Updated upstream
     "C:\\Users\\kevin\\OneDrive\\Documentos\\ProyectoBasesDatos\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj": {}
   },
   "projects": {
@@ -15,11 +16,29 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "C:\\Users\\noel_\\OneDrive\\Escritorio\\Tec\\II semestre 2023\\a\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\noel_\\OneDrive\\Escritorio\\Tec\\II semestre 2023\\a\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\noel_\\OneDrive\\Escritorio\\Tec\\II semestre 2023\\a\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj",
+        "projectName": "webApi",
+        "projectPath": "C:\\Users\\noel_\\OneDrive\\Escritorio\\Tec\\II semestre 2023\\a\\TecAir_proyecto_bases_2023\\webApi\\webApi.csproj",
+        "packagesPath": "C:\\Users\\noel_\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\noel_\\OneDrive\\Escritorio\\Tec\\II semestre 2023\\a\\TecAir_proyecto_bases_2023\\webApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\noel_\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+>>>>>>> Stashed changes
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
