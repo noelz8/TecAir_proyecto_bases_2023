@@ -1,0 +1,11 @@
+html, body { height: 100%; }
+
+body{
+    margin: 100px;
+}
+
+.mat-form-field{
+
+    width: 100%;
+
+}
