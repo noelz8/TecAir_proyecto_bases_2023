@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { CrearUsuarioComponent } from './crear-usuario/crear-usuario.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClient } from '@angular/common/http';
     LoginClienteComponent,
     ReservaVuelosComponent,
     BusquedaVuelosComponent,
-    PromocionesComponent
+    PromocionesComponent,
+    CrearUsuarioComponent
   ],
   imports: [
     BrowserModule,

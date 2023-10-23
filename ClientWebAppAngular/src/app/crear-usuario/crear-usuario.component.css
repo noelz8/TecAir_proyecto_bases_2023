@@ -1,0 +1,27 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 100px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.body-container {
+  background-image: url('https://res.cloudinary.com/simpleview/image/upload/v1574457796/clients/quintanaroo/IMG_1282_5806b862-6441-4927-842e-f4f1f955eff3.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.5); /* Ajusta el último valor para la opacidad deseada */
+}
+
+.card {
+  width: 100%;
+  max-width: 1200px; /* Ajusta el valor según tus necesidades */
+  margin: 0 auto;
+}
